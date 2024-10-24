@@ -1,0 +1,27 @@
+# LibraryConfig.cmake.in
+
+# Set the library version
+set(Library_VERSION "@PACKAGE_VERSION@")
+
+# Set the include directory (adjust as necessary)
+set(Library_INCLUDE_DIRS "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+# Specify the library target
+set(Library_LIBRARIES "Library")
+
+# Ensure the include directories are available
+if(NOT Library_INCLUDE_DIRS)
+    message(FATAL_ERROR "Library include directories not found.")
+endif()
+
+# Ensure the library is available
+if(NOT Library_LIBRARIES)
+    message(FATAL_ERROR "Could not find the Library.")
+endif()
+
+# Provide the include directories
+include_directories(${Library_INCLUDE_DIRS})
+
+# Export the variables
+set(Library_INCLUDE_DIRS ${Library_INCLUDE_DIRS} CACHE STRING "Include directories for the Library")
+set(Library_LIBRARIES ${Library_LIBRARIES} CACHE STRING "Libraries for the Library")
